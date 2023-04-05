@@ -135,7 +135,8 @@ kernel_build(
     ],
     base_kernel = None,
     build_config = "build.config.xen_virtual_device.aarch64",
-    # collect_unstripped_modules = True,
+    collect_unstripped_modules = True,
+    strip_modules = True,
     module_outs = _GKI_MODULES_BASENAMES + _VIRT_COMMON_MODULES + _VIRT_AARCH64_MODULES + _XEN_VIRT_AARCH64_MODULES,
 )
 
@@ -157,7 +158,7 @@ merged_kernel_uapi_headers(
 kernel_images(
     name = "xen_virtual_device_aarch64_images",
     build_initramfs = True,
-    # build_boot = True,
+    build_boot = False,
     kernel_build = ":xen_virtual_device_aarch64",
     kernel_modules_install = ":xen_virtual_device_aarch64_modules_install",
     modules_blocklist = "modules.blocklist",
